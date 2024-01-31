@@ -1,0 +1,18 @@
+ms = []
+n = 0
+q = 0
+with open("input.txt", 'r') as f:
+    for line in f:
+        if line.strip():
+            m = list(map(int, line.split(' ')))
+            ms.extend(m)
+            q += 1
+            n = max(n, max(m[:2]))
+ma = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
+for i in range(n + 1):
+    ma[0][i] = i
+    ma[i][0] = i
+for i in range(0, len(ms), 3):
+    ma[ms[i]][ms[i + 1]] = ms[i + 2]
+for row in ma:
+    print(*row)
